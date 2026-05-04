@@ -1,0 +1,227 @@
+/* Trace: ACTIVITY-CODE — Sibar mock login POC demo */
+
+:root {
+  --color-bg: #f4f7f6;
+  --color-surface: #ffffff;
+  --color-primary: #0d5c4a;
+  --color-primary-hover: #094a3c;
+  --color-border: #c8d4cf;
+  --color-text: #1a2e28;
+  --color-muted: #5a6f68;
+  --color-banner-bg: #2c5282;
+  --color-banner-text: #f0f4f8;
+  --radius: 8px;
+  --shadow: 0 8px 28px rgba(13, 92, 74, 0.08);
+  --focus-ring: 0 0 0 3px rgba(13, 92, 74, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.demo-banner {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0.65rem 1.25rem;
+  background: var(--color-banner-bg);
+  color: var(--color-banner-text);
+  font-size: 0.875rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 48px);
+  padding: 2rem 1rem 3rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--color-border);
+  padding: 2rem 2rem 1.75rem;
+}
+
+.card--wide {
+  max-width: 560px;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.brand h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.brand p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.field {
+  margin-bottom: 1.15rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--color-text);
+}
+
+.field input[type="text"],
+.field input[type="password"] {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafcfb;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.checkbox-row input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-primary);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--color-border);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.hint code {
+  background: #eef3f1;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.error-msg {
+  display: none;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.875rem;
+  color: #9b1c1c;
+  background: #fde8e8;
+  border-radius: 6px;
+  border: 1px solid #f5bcbc;
+}
+
+.error-msg.is-visible {
+  display: block;
+}
+
+.dashboard-header {
+  margin-bottom: 1.25rem;
+}
+
+.dashboard-header h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  color: var(--color-primary);
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.actions {
+  margin-top: 1.5rem;
+}
+
+.actions .btn {
+  width: auto;
+  min-width: 140px;
+  text-decoration: none;
+}
+
+.btn--secondary {
+  background: #fff;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: #f0faf7;
+}
