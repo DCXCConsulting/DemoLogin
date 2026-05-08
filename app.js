@@ -36,28 +36,30 @@
   }
 
   /**
-   * Profile tabs on landing (decorative panels).
+   * Tab panels inside each .tab-section (scoped panels per section).
    */
-  function initProfileTabs() {
-    var tablist = document.querySelector(".profile-tabs");
-    if (!tablist) {
-      return;
-    }
-    var tabs = tablist.querySelectorAll("[data-profile-tab]");
-    var panels = document.querySelectorAll("[data-profile-panel]");
-    if (!tabs.length || !panels.length) {
-      return;
-    }
-    tabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        var id = tab.getAttribute("data-profile-tab");
-        tabs.forEach(function (t) {
-          var on = t === tab;
-          t.classList.toggle("is-active", on);
-          t.setAttribute("aria-selected", on ? "true" : "false");
-        });
-        panels.forEach(function (p) {
-          p.hidden = p.getAttribute("data-profile-panel") !== id;
+  function initTabSections() {
+    document.querySelectorAll(".tab-section").forEach(function (root) {
+      var tablist = root.querySelector(".profile-tabs");
+      if (!tablist) {
+        return;
+      }
+      var tabs = tablist.querySelectorAll("[data-tab-id]");
+      var panels = root.querySelectorAll("[data-tab-panel]");
+      if (!tabs.length || !panels.length) {
+        return;
+      }
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          var id = tab.getAttribute("data-tab-id");
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.classList.toggle("is-active", on);
+            t.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          panels.forEach(function (p) {
+            p.hidden = p.getAttribute("data-tab-panel") !== id;
+          });
         });
       });
     });
@@ -149,7 +151,7 @@
   initCookieBanner();
 
   if (document.body.dataset.page === "login") {
-    initProfileTabs();
+    initTabSections();
     initLoginPage();
   } else if (document.body.dataset.page === "dashboard") {
     initDashboardPage();

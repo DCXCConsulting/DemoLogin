@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- Trace: DEMO-SUS-RESTYLE — fictional portal POC (no real institution) -->
+<!-- Trace: DEMO-SUS-RESTYLE — mock layout; add files listed in assets/EXPECTED_ASSETS.txt -->
 <html lang="it">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Portale SID — Accesso dimostrativo</title>
+    <title>Portale SID — Dimostrazione</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="login">
@@ -16,29 +16,42 @@
 
     <header class="site-header">
       <div class="site-header__util">
-        <a href="#">Centro risposte</a>
-        <span class="site-header__util-sep" aria-hidden="true"></span>
-        <button type="button">Menu rapido</button>
-        <span class="site-header__util-sep" aria-hidden="true"></span>
-        <a href="#">Registrati o entra</a>
+        <div class="site-header__util-start">
+          <img
+            class="site-header__region-logo"
+            src="assets/logo_regione.png"
+            width="140"
+            height="40"
+            alt="Logo Regione — inserisci assets/logo_regione.png"
+          />
+        </div>
+        <div class="site-header__util-end">
+          <a href="#">Chiedi al portale</a>
+          <span class="site-header__util-sep" aria-hidden="true"></span>
+          <button type="button">Strumenti</button>
+          <span class="site-header__util-sep" aria-hidden="true"></span>
+          <a href="#">Accedi / Registrati</a>
+        </div>
       </div>
       <div class="site-header__main">
         <a class="site-header__brand" href="index.html">
-          <span class="site-header__logo" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </span>
+          <img
+            class="site-header__portal-logo"
+            src="assets/logo_sus.png"
+            width="140"
+            height="52"
+            alt="Logo portale — inserisci assets/logo_sus.png"
+          />
           <span class="site-header__titles">
             <strong>Portale SID — Servizi in digitale</strong>
-            <span
-              >Piattaforma dimostrativa: modulistica e contenuti di esempio</span
-            >
+            <span>Mock grafico: modulistica e testi di esempio</span>
           </span>
         </a>
         <div class="site-header__search">
           <input
             type="search"
-            placeholder="Cerca tra schede e guide (solo anteprima grafica)"
-            aria-label="Campo ricerca dimostrativo"
+            placeholder="Cerca servizi o informazioni…"
+            aria-label="Ricerca (solo anteprima)"
             readonly
             tabindex="-1"
           />
@@ -56,33 +69,30 @@
               <path d="m21 21-4.3-4.3" />
             </svg>
           </span>
-          <span class="site-header__search-all">Tutte le schede</span>
+          <span class="site-header__search-all">Tutti</span>
         </div>
       </div>
     </header>
 
-    <div class="login-layout">
-      <section class="login-hero" aria-labelledby="hero-heading">
-        <p class="login-hero__kicker">Novità del mese (testo di prova)</p>
-        <h2 id="hero-heading" class="login-hero__title">
-          Un unico punto per moduli, scadenze e comunicazioni con gli uffici
-        </h2>
-        <p class="login-hero__lead">
-          Il Portale SID è un mock creato per presentazioni: qui trovi
-          etichette, griglie e testi inventati. L’accesso riservato a destra
-          simula solo il passaggio di login, senza collegamenti a sistemi reali.
+    <section class="page-hero" aria-labelledby="hero-heading">
+      <div class="page-hero__inner">
+        <h1 id="hero-heading" class="page-hero__title">
+          Scopri i servizi online di esempio dedicati al territorio (dimostrazione)
+        </h1>
+        <p class="page-hero__lead">
+          Testi e collegamenti sono segnaposto: sostituiscili con contenuti reali
+          quando colleghi il portale vero. L’immagine di sfondo è
+          <code class="page-hero__code">assets/foto1.jpg</code>.
         </p>
-        <ul class="login-hero__bullets" aria-label="Promesse di esempio">
-          <li>Checklist personalizzabili per pratiche ricorrenti</li>
-          <li>Promemoria e canali di supporto (simulati)</li>
-          <li>Archivio documenti con etichette di prova</li>
-        </ul>
-      </section>
-      <div class="login-panel">
-        <main class="card" aria-labelledby="page-title">
+      </div>
+    </section>
+
+    <section class="login-section" aria-labelledby="page-title">
+      <div class="login-section__inner">
+        <main class="card">
           <div class="brand">
-            <h1 id="page-title">Entra nell’area riservata</h1>
-            <p>Usa credenziali fittizie per continuare la dimostrazione</p>
+            <h2 id="page-title">Accesso area riservata</h2>
+            <p>Credenziali fittizie per la prova del flusso</p>
           </div>
           <div id="login-error" class="error-msg" role="alert"></div>
           <form id="login-form" novalidate>
@@ -109,47 +119,304 @@
             <div class="checkbox-row">
               <input id="remember" name="remember" type="checkbox" />
               <label for="remember"
-                >Memorizza su questo dispositivo (solo per la sessione
-                dimostrativa)</label
+                >Memorizza su questo dispositivo (solo sessione dimostrativa)</label
               >
             </div>
             <button type="submit" id="submit-btn" class="btn">Entra</button>
           </form>
           <p class="hint">
-            Per la prova basta qualsiasi valore non vuoto, ad esempio
-            <code>prova</code> / <code>prova</code>. Nessun invio verso server
-            esterni.
+            Demo: qualsiasi valore non vuoto, es. <code>prova</code> /
+            <code>prova</code>. Nessun invio a server esterni.
           </p>
         </main>
       </div>
-    </div>
+    </section>
 
     <div class="landing-main">
       <section
-        class="landing-section profile-block"
+        class="landing-section tab-section profile-block"
+        id="section-sus-profiles"
         aria-labelledby="profiles-heading"
       >
         <div class="section-head">
           <h2 id="profiles-heading" class="section-head__title">
-            Scegli il profilo e consulta le schede dimostrative
+            Seleziona il tuo profilo e scopri i servizi di esempio dedicati a te
           </h2>
           <p class="section-head__lead">
-            Le quattro schede sotto sono puramente decorative: cambiano il
-            testo centrale per mostrare come potrebbe apparire un portale
-            multi-utente.
+            Struttura ispirata ai portali istituzionali: tab, elenco card e
+            immagine laterale (<code>assets/foto2.jpg</code>). Contenuti
+            dimostrativi.
           </p>
         </div>
         <div
           class="profile-tabs"
           role="tablist"
-          aria-label="Profili dimostrativi"
+          aria-label="Profilo utente (dimostrazione)"
         >
           <button
             type="button"
             class="profile-tabs__tab is-active"
             role="tab"
             aria-selected="true"
-            data-profile-tab="resident"
+            data-tab-id="citizen"
+          >
+            Cittadino
+          </button>
+          <button
+            type="button"
+            class="profile-tabs__tab"
+            role="tab"
+            aria-selected="false"
+            data-tab-id="business"
+          >
+            Imprese e Professionisti
+          </button>
+          <button
+            type="button"
+            class="profile-tabs__tab"
+            role="tab"
+            aria-selected="false"
+            data-tab-id="local"
+          >
+            Enti locali e Associazioni
+          </button>
+          <button
+            type="button"
+            class="profile-tabs__tab"
+            role="tab"
+            aria-selected="false"
+            data-tab-id="tourist"
+          >
+            Turisti e Non residenti
+          </button>
+        </div>
+        <div class="profile-panels-wrap">
+          <div
+            class="profile-panel profile-panel--split"
+            role="tabpanel"
+            data-tab-panel="citizen"
+          >
+            <div class="profile-panel__main">
+              <p class="profile-panel__intro">
+                Percorsi dimostrativi per residenti: autorizzazioni, contributi
+                e iscrizioni di fantasia.
+              </p>
+              <ul class="service-list">
+                <li>
+                  <a href="#"
+                    ><span>Autorizzazioni e Concessioni (esempio)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Finanziamenti (scheda mock)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Iscrizioni, Registri e Graduatorie</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Sussidi, Contributi e Agevolazioni</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+              </ul>
+              <p class="profile-panel__cta">
+                <a class="text-link" href="#">Vai a tutti i servizi</a>
+              </p>
+            </div>
+            <div class="profile-panel__media">
+              <img
+                src="assets/foto2.jpg"
+                width="520"
+                height="360"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div
+            class="profile-panel profile-panel--split"
+            hidden
+            role="tabpanel"
+            data-tab-panel="business"
+          >
+            <div class="profile-panel__main">
+              <p class="profile-panel__intro">
+                Schede di prova per imprese, studi professionali e artigiani.
+              </p>
+              <ul class="service-list">
+                <li>
+                  <a href="#"
+                    ><span>Bandi e finanziamenti impresa (fittizio)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Commercio e vigilanza — moduli demo</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Certificazioni e dichiarazioni (mock)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Innovazione e digitalizzazione (esempio)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+              </ul>
+              <p class="profile-panel__cta">
+                <a class="text-link" href="#">Vai a tutti i servizi</a>
+              </p>
+            </div>
+            <div class="profile-panel__media">
+              <img
+                src="assets/foto2.jpg"
+                width="520"
+                height="360"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div
+            class="profile-panel profile-panel--split"
+            hidden
+            role="tabpanel"
+            data-tab-panel="local"
+          >
+            <div class="profile-panel__main">
+              <p class="profile-panel__intro">
+                Contenuti di esempio per enti territoriali e associazioni
+                convenzionate.
+              </p>
+              <ul class="service-list">
+                <li>
+                  <a href="#"
+                    ><span>Progetti e convenzioni (testo dimostrativo)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Modulistica PNRR / fondi (fittizio)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Trasparenza e pubblicità atti (mock)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Partecipazione e consultazioni (esempio)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+              </ul>
+              <p class="profile-panel__cta">
+                <a class="text-link" href="#">Vai a tutti i servizi</a>
+              </p>
+            </div>
+            <div class="profile-panel__media">
+              <img
+                src="assets/foto2.jpg"
+                width="520"
+                height="360"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div
+            class="profile-panel profile-panel--split"
+            hidden
+            role="tabpanel"
+            data-tab-panel="tourist"
+          >
+            <div class="profile-panel__main">
+              <p class="profile-panel__intro">
+                Informazioni di cortesia simulate per soggiorni brevi e
+                visitatori.
+              </p>
+              <ul class="service-list">
+                <li>
+                  <a href="#"
+                    ><span>Orientamento sanitario (scheda demo)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Mobilità, parcheggi e trasporti (esempio)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Cultura, eventi e musei (fittizio)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><span>Permessi e pratiche per non residenti (mock)</span
+                    ><span class="arrow" aria-hidden="true"></span
+                  ></a>
+                </li>
+              </ul>
+              <p class="profile-panel__cta">
+                <a class="text-link" href="#">Vai a tutti i servizi</a>
+              </p>
+            </div>
+            <div class="profile-panel__media">
+              <img
+                src="assets/foto2.jpg"
+                width="520"
+                height="360"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="landing-section tab-section profile-block-secondary"
+        id="section-demo-profiles"
+        aria-labelledby="demo-profiles-heading"
+      >
+        <div class="section-head">
+          <h2 id="demo-profiles-heading" class="section-head__title">
+            Ulteriori percorsi dimostrativi
+          </h2>
+          <p class="section-head__lead">
+            Secondo set di tab con etichette alternative, per mostrare varianti
+            di copy e navigazione.
+          </p>
+        </div>
+        <div class="profile-tabs" role="tablist" aria-label="Profili demo">
+          <button
+            type="button"
+            class="profile-tabs__tab is-active"
+            role="tab"
+            aria-selected="true"
+            data-tab-id="resident"
           >
             Residente
           </button>
@@ -158,7 +425,7 @@
             class="profile-tabs__tab"
             role="tab"
             aria-selected="false"
-            data-profile-tab="professional"
+            data-tab-id="freelance"
           >
             Libero professionista
           </button>
@@ -167,7 +434,7 @@
             class="profile-tabs__tab"
             role="tab"
             aria-selected="false"
-            data-profile-tab="organization"
+            data-tab-id="collective"
           >
             Ente o collettivo
           </button>
@@ -176,16 +443,16 @@
             class="profile-tabs__tab"
             role="tab"
             aria-selected="false"
-            data-profile-tab="visitor"
+            data-tab-id="guest"
           >
             Ospite temporaneo
           </button>
         </div>
-        <div class="profile-panels">
-          <div class="profile-panel" role="tabpanel" data-profile-panel="resident">
+        <div class="profile-panels-wrap">
+          <div class="profile-panel" role="tabpanel" data-tab-panel="resident">
             <p class="profile-panel__intro">
-              Schede pensate per chi risiede stabilmente nel territorio di
-              riferimento: qui trovi solo titoli di fantasia.
+              Elenco compatto senza immagine laterale: utile per confrontare la
+              densità in pagina.
             </p>
             <ul class="service-list">
               <li>
@@ -202,7 +469,7 @@
               </li>
               <li>
                 <a href="#"
-                  ><span>Contributi per ristrutturazioni green</span
+                  ><span>Contributi ristrutturazioni green (mock)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
@@ -223,53 +490,49 @@
             class="profile-panel"
             hidden
             role="tabpanel"
-            data-profile-panel="professional"
+            data-tab-panel="freelance"
           >
             <p class="profile-panel__intro">
-              Contenuti di esempio per studi professionali e partite IVA
-              dimostrative.
+              Flussi inventati per partite IVA e studi professionali.
             </p>
             <ul class="service-list">
               <li>
                 <a href="#"
-                  ><span>Adempimenti contabili “FastTrack” (mock)</span
+                  ><span>Adempimenti “FastTrack” (mock)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><span>Incentivi formazione continua</span
+                  ><span>Formazione continua — avvisi demo</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><span>Bandi cooperazione locale</span
+                  ><span>Bandi cooperazione (esempio)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><span>Certificazioni ambientali demo</span
+                  ><span>Certificazioni ambientali (fittizio)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
             </ul>
             <p class="profile-panel__cta">
-              <a class="text-link" href="#"
-                >Vai alle schede per professionisti</a
-              >
+              <a class="text-link" href="#">Vai alle schede professionisti</a>
             </p>
           </div>
           <div
             class="profile-panel"
             hidden
             role="tabpanel"
-            data-profile-panel="organization"
+            data-tab-panel="collective"
           >
             <p class="profile-panel__intro">
-              Linee guida inventate per comuni, associazioni e fondazioni che
-              partecipano a progetti pilota.
+              Modulistica e avvisi di prova per enti e associazioni.
             </p>
             <ul class="service-list">
               <li>
@@ -280,7 +543,7 @@
               </li>
               <li>
                 <a href="#"
-                  ><span>Modulistica progetti comunitari</span
+                  ><span>Progetti comunitari (mock)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
@@ -292,110 +555,102 @@
               </li>
               <li>
                 <a href="#"
-                  ><span>Calendario incontri istituzionali</span
+                  ><span>Calendario incontri (esempio)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
             </ul>
             <p class="profile-panel__cta">
-              <a class="text-link" href="#"
-                >Scopri tutte le risorse per gli enti</a
-              >
+              <a class="text-link" href="#">Risorse per gli enti</a>
             </p>
           </div>
           <div
             class="profile-panel"
             hidden
             role="tabpanel"
-            data-profile-panel="visitor"
+            data-tab-panel="guest"
           >
             <p class="profile-panel__intro">
-              Percorsi dimostrativi per chi soggiorna brevemente e necessita di
-              informazioni generali.
+              FAQ e guide simulate per visitatori temporanei.
             </p>
             <ul class="service-list">
               <li>
                 <a href="#"
-                  ><span>Guida rapida “48 ore in città”</span
+                  ><span>Guida “48 ore in città” (fittizio)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><span>Servizi sanità di base (testo esemplificativo)</span
+                  ><span>Sanità di base — testo esemplificativo</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><span>Mobilità e parcheggi: FAQ demo</span
+                  ><span>Mobilità e parcheggi (demo)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><span>Eventi stagionali (calendario finto)</span
+                  ><span>Eventi stagionali (calendario mock)</span
                   ><span class="arrow" aria-hidden="true"></span
                 ></a>
               </li>
             </ul>
             <p class="profile-panel__cta">
-              <a class="text-link" href="#"
-                >Consulta l’area visitatori</a
-              >
+              <a class="text-link" href="#">Area visitatori</a>
             </p>
           </div>
         </div>
       </section>
 
-      <section
-        class="landing-section"
-        aria-labelledby="themes-heading"
-      >
+      <section class="landing-section" aria-labelledby="themes-heading">
         <div class="section-head">
           <h2 id="themes-heading" class="section-head__title">
-            Naviga per ambiti tematici (contenuti fittizi)
+            Accedi per aree tematiche
           </h2>
           <p class="section-head__lead">
-            Ogni riquadro è un collegamento segnaposto: serve a mostrare la
-            griglia come potrebbe organizzare i contenuti un portale reale.
+            I servizi di esempio sono raggruppati per ambito: ogni riquadro è un
+            collegamento segnaposto.
           </p>
         </div>
         <div class="theme-grid">
           <a class="theme-grid__cell" href="#"
-            ><span>Filiera agricola e ittica</span
+            ><span>Agricoltura e Allevamento</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Ambiente e tutela del territorio</span
+            ><span>Ambiente e Natura</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Cultura, sport e tempo libero</span
+            ><span>Cultura, Sport e Turismo</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Diritti, partecipazione e pari opportunità</span
+            ><span>Diritti e Cittadinanza</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Imprese, commercio e artigianato</span
+            ><span>Industria, Commercio e Artigianato</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Istruzione, lavoro e aggiornamento</span
+            ><span>Lavoro, Scuola e Formazione</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Mobilità dolce e cantieri</span
+            ><span>Mobilità e Infrastruttura</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Salute, previdenza e inclusione</span
+            ><span>Salute e Welfare</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
           <a class="theme-grid__cell" href="#"
-            ><span>Urbanistica e beni culturali</span
+            ><span>Territorio e Patrimonio Culturale</span
             ><span class="arrow" aria-hidden="true"></span
           ></a>
         </div>
@@ -408,8 +663,7 @@
               In primo piano
             </h2>
             <p class="section-head__lead">
-              Tre schede editoriali inventate per simulare comunicazioni in
-              evidenza.
+              Schede editoriali inventate con titolo, sommario, link e tag.
             </p>
           </div>
           <a class="text-link text-link--block" href="#"
@@ -417,46 +671,56 @@
           >
         </div>
         <div class="spotlight-grid">
-          <article class="spotlight-card">
-            <button
-              type="button"
-              class="spotlight-card__pin"
-              aria-label="Segna come importante (dimostrativo)"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                aria-hidden="true"
+          <article class="spotlight-card spotlight-card--has-thumb">
+            <div class="spotlight-card__thumb-wrap">
+              <img
+                class="spotlight-card__thumb"
+                src="assets/foto1.jpg"
+                width="400"
+                height="200"
+                alt=""
+                loading="lazy"
+              />
+              <button
+                type="button"
+                class="spotlight-card__pin"
+                aria-label="Preferito (dimostrativo)"
               >
-                <path
-                  d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 17.8 5.7 21l2.3-7-6-4.6h7.6L12 2z"
-                />
-              </svg>
-            </button>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 17.8 5.7 21l2.3-7-6-4.6h7.6L12 2z"
+                  />
+                </svg>
+              </button>
+            </div>
             <h3 class="spotlight-card__title">
-              Bando “Futuro sostenibile 2026”: testo di esempio per brochure
+              Bando “Futuro sostenibile 2026”: brochure di esempio per slide
             </h3>
             <p class="spotlight-card__excerpt">
-              Descrizione fittizia: contributi immaginari per progetti energetici
-              presentabili entro una data inventata. Nessun avviso reale è
-              collegato a questa scheda.
+              Testo fittizio su contributi immaginari: sostituire con comunicati
+              reali. Miniatura opzionale: stesso file
+              <code>foto1.jpg</code> o un’altra immagine in assets.
             </p>
-            <a class="spotlight-card__read" href="#">Leggi la scheda completa</a>
+            <a class="spotlight-card__read" href="#">Leggi tutto</a>
             <div class="spotlight-card__tags">
-              <span class="tag">Libero professionista</span>
-              <span class="tag">Ente locale</span>
-              <span class="tag">+2 etichette</span>
+              <span class="tag">Professionisti</span>
+              <span class="tag">Enti</span>
+              <span class="tag">+2 tag</span>
             </div>
           </article>
           <article class="spotlight-card">
             <button
               type="button"
               class="spotlight-card__pin"
-              aria-label="Segna come importante (dimostrativo)"
+              aria-label="Preferito (dimostrativo)"
             >
               <svg
                 width="18"
@@ -473,16 +737,16 @@
               </svg>
             </button>
             <h3 class="spotlight-card__title">
-              Nuovo calendario pagamenti (simulazione): come leggere le rate di
+              Calendario rate e avvisi (simulazione): come leggere le scadenze di
               prova
             </h3>
             <p class="spotlight-card__excerpt">
-              Articolo dimostrativo che spiega un flusso inesistente: utile solo
-              per valutare tipografia e lunghezza del testo nelle anteprime.
+              Articolo dimostrativo senza valore legale: serve a valutare
+              lunghezza del testo e gerarchia tipografica.
             </p>
-            <a class="spotlight-card__read" href="#">Leggi la scheda completa</a>
+            <a class="spotlight-card__read" href="#">Leggi tutto</a>
             <div class="spotlight-card__tags">
-              <span class="tag">Residente</span>
+              <span class="tag">Cittadini</span>
               <span class="tag">Famiglie</span>
             </div>
           </article>
@@ -490,7 +754,7 @@
             <button
               type="button"
               class="spotlight-card__pin"
-              aria-label="Segna come importante (dimostrativo)"
+              aria-label="Preferito (dimostrativo)"
             >
               <svg
                 width="18"
@@ -507,17 +771,17 @@
               </svg>
             </button>
             <h3 class="spotlight-card__title">
-              Linee guida “Viaggio sicuro”: materiali promozionali di fantasia
+              Linee guida “Viaggio sicuro”: opuscolo promozionale di fantasia
             </h3>
             <p class="spotlight-card__excerpt">
-              Sintesi inventata su percorsi ciclabili e mappe dimostrative. Il
-              contenuto non sostituisce documenti ufficiali di alcun ente.
+              Sintesi inventata su percorsi ciclabili. Puoi aggiungere
+              <code>foto2.jpg</code> in cima alla card duplicando il blocco
+              immagine della prima scheda.
             </p>
-            <a class="spotlight-card__read" href="#">Leggi la scheda completa</a>
+            <a class="spotlight-card__read" href="#">Leggi tutto</a>
             <div class="spotlight-card__tags">
-              <span class="tag">Ospite</span>
+              <span class="tag">Turisti</span>
               <span class="tag">Mobilità</span>
-              <span class="tag">+1</span>
             </div>
           </article>
         </div>
@@ -526,8 +790,9 @@
 
     <footer class="site-footer">
       <p>
-        Portale SID — mock grafico. Contatti, loghi e riferimenti normativi qui
-        sarebbero inventati o omessi in una presentazione interna.
+        Portale SID — mock. In produzione qui inseriresti loghi istituzionali
+        (UE, Stato, Regione) e testi legali. File attesi in
+        <code>assets/</code>: vedi <code>EXPECTED_ASSETS.txt</code>.
       </p>
     </footer>
 
@@ -538,15 +803,14 @@
       aria-label="Messaggio cookie dimostrativo"
     >
       <p class="cookie-banner__text">
-        Questa anteprima memorizza solo una preferenza locale quando premi
-        “Accetto”. In un sito pubblico inseriresti qui l’informativa completa,
-        le finalità e i link alla privacy.
+        Anteprima: memorizziamo solo la scelta “accetto” in locale. Informativa
+        completa e gestione consensi andrebbero qui in un sito pubblico.
       </p>
       <div class="cookie-banner__actions">
         <button type="button" id="cookie-accept" class="cookie-banner__accept">
-          OK, accetto
+          OK, ACCETTO
         </button>
-        <a class="cookie-banner__more" href="#">Preferisco altre informazioni</a>
+        <a class="cookie-banner__more" href="#">No, voglio più informazioni</a>
       </div>
     </div>
 
