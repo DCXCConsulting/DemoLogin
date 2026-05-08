@@ -1,9 +1,67 @@
-/* Trace: ACTIVITY-CODE — Sibar mock login POC demo */
+/* Trace: DEMO-SUS-RESTYLE — Sibar mock login POC demo */
 
 (function () {
   "use strict";
 
   var STORAGE_KEY = "sibarDemoUsername";
+  var COOKIE_CONSENT_KEY = "susDemoCookieConsent";
+
+  /**
+   * Cookie banner: hide after accept, persist preference.
+   */
+  function initCookieBanner() {
+    var banner = document.getElementById("cookie-banner");
+    if (!banner) {
+      return;
+    }
+    try {
+      if (localStorage.getItem(COOKIE_CONSENT_KEY) === "1") {
+        banner.hidden = true;
+        return;
+      }
+    } catch (err) {
+      /* ignore */
+    }
+    var btn = document.getElementById("cookie-accept");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        try {
+          localStorage.setItem(COOKIE_CONSENT_KEY, "1");
+        } catch (e) {
+          /* ignore */
+        }
+        banner.hidden = true;
+      });
+    }
+  }
+
+  /**
+   * Profile tabs on landing (decorative panels).
+   */
+  function initProfileTabs() {
+    var tablist = document.querySelector(".profile-tabs");
+    if (!tablist) {
+      return;
+    }
+    var tabs = tablist.querySelectorAll("[data-profile-tab]");
+    var panels = document.querySelectorAll("[data-profile-panel]");
+    if (!tabs.length || !panels.length) {
+      return;
+    }
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var id = tab.getAttribute("data-profile-tab");
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        panels.forEach(function (p) {
+          p.hidden = p.getAttribute("data-profile-panel") !== id;
+        });
+      });
+    });
+  }
 
   /**
    * Login page: fake submit with validation and redirect.
@@ -40,7 +98,7 @@
 
       if (!u || !p) {
         errorEl.textContent =
-          "Inserisci nome utente e password (demo: qualsiasi valore non vuoto).";
+          "Compila identificativo e chiave di accesso (demo: qualsiasi valore non vuoto).";
         errorEl.classList.add("is-visible");
         return;
       }
@@ -88,7 +146,10 @@
     welcome.textContent = name;
   }
 
+  initCookieBanner();
+
   if (document.body.dataset.page === "login") {
+    initProfileTabs();
     initLoginPage();
   } else if (document.body.dataset.page === "dashboard") {
     initDashboardPage();
