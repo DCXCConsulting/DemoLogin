@@ -92,7 +92,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.45rem 1.25rem;
+  padding: 0.45rem clamp(0.75rem, 2vw, 1.25rem);
   background: var(--color-util-bg);
   color: #fff;
   font-size: 0.8125rem;
@@ -185,11 +185,12 @@ body {
 .site-header__ribbon-inner {
   display: grid;
   grid-template-columns: auto auto 1fr;
+  grid-template-areas: "menu logo notice";
   align-items: center;
   gap: 1rem 2rem;
   max-width: var(--layout-max);
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 clamp(0.75rem, 3vw, 1.25rem);
 }
 
 .site-header--scrolled .site-header__ribbon {
@@ -212,6 +213,7 @@ body {
 }
 
 .site-header__menu {
+  grid-area: menu;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -224,7 +226,6 @@ body {
   font: inherit;
   cursor: pointer;
   flex-shrink: 0;
-  grid-column: 1;
   transition: color var(--ease-header);
 }
 
@@ -257,6 +258,7 @@ body {
 
 /* --- siralogo (replaces legacy portal logo naming) --- */
 .siralogo {
+  grid-area: logo;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -264,7 +266,6 @@ body {
   text-decoration: none;
   color: #000;
   flex-shrink: 0;
-  grid-column: 2;
   justify-self: start;
   text-align: left;
   /* Only transform is compositor-friendly; avoid transitioning flex-* (layout thrash). */
@@ -272,7 +273,6 @@ body {
 }
 
 .site-header--scrolled .siralogo {
-  grid-column: 2;
   min-width: 0;
   flex-direction: column;
   align-items: flex-start;
@@ -347,6 +347,7 @@ body {
 }
 
 .site-header__notice {
+  grid-area: notice;
   margin: 0;
   min-width: 0;
   font-size: 0.72rem;
@@ -356,7 +357,6 @@ body {
   text-align: right;
   justify-self: end;
   align-self: center;
-  grid-column: 3;
   transition: opacity var(--ease-header);
   max-height: 14rem;
   opacity: 1;
@@ -700,7 +700,7 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
   flex: 1 1 auto;
   min-height: 0;
   background: #fff;
-  padding: 1.25rem 1.25rem 2.5rem;
+  padding: 1.25rem clamp(0.75rem, 3vw, 1.25rem) 2.5rem;
   max-width: 100%;
   overflow-x: clip;
 }
@@ -746,11 +746,11 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
 }
 
 .info-grid--3 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 }
 
 .info-grid--2 {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
   margin-bottom: 0;
 }
 
@@ -813,7 +813,7 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
   flex-shrink: 0;
   background: var(--color-footer-bg);
   color: #fff;
-  padding: 1.5rem 1.25rem 2rem;
+  padding: 1.5rem clamp(0.75rem, 3vw, 1.25rem) 2rem;
 }
 
 .site-footer__heading {
@@ -835,7 +835,7 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 1.5rem 2rem;
   max-width: var(--layout-max);
   margin: 0 auto;
@@ -1075,35 +1075,15 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
 }
 
 @media (max-width: 900px) {
-  .info-grid--3 {
-    grid-template-columns: 1fr;
-  }
-
-  .info-grid--2 {
-    grid-template-columns: 1fr;
-  }
-
-  .site-footer__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .site-header__ribbon {
-    grid-template-columns: 1fr;
-    justify-items: start;
+  .site-header__ribbon-inner {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "menu logo"
+      "notice notice";
     gap: 1rem;
   }
 
-  .site-header__menu {
-    grid-column: 1;
-    justify-self: start;
-  }
-
-  .siralogo {
-    grid-column: 1;
-  }
-
   .site-header__notice {
-    grid-column: 1;
     justify-self: stretch;
     max-width: none;
     text-align: left;
@@ -1117,14 +1097,6 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
     padding-top: 0.6rem;
     padding-bottom: 0.65rem;
     background: var(--color-header-ribbon-collapsed);
-  }
-
-  .site-header--scrolled .siralogo {
-    grid-column: 1;
-  }
-
-  .site-header--scrolled .site-header__menu {
-    grid-column: 1;
   }
 }
 
