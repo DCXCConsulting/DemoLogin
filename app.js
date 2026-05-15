@@ -151,6 +151,27 @@
       return;
     }
 
+    // Toggle aria-expanded on click for desktop triggers to match mobile behavior
+    var triggers = nav.querySelectorAll(".site-nav__link--trigger");
+    triggers.forEach(function (btn) {
+      btn.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        var expanded = btn.getAttribute("aria-expanded") === "true";
+        // Close other desktop menus
+        triggers.forEach(function (other) {
+          if (other !== btn) other.setAttribute("aria-expanded", "false");
+        });
+        btn.setAttribute("aria-expanded", expanded ? "false" : "true");
+      });
+    });
+
+    document.addEventListener("click", function () {
+      triggers.forEach(function (btn) {
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
     function applyHidden(hidden) {
       nav.hidden = !!hidden;
       if (hidden) {
