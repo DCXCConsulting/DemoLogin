@@ -41,10 +41,12 @@
         <button
           type="button"
           class="site-header__menu"
+          id="site-menu-toggle"
           aria-expanded="false"
-          aria-controls="site-primary-nav"
+          aria-controls="site-drawer"
         >
           <span class="site-header__menu-bars" aria-hidden="true"></span>
+          <span class="site-header__menu-x" aria-hidden="true">×</span>
           <span class="site-header__menu-label">Menu</span>
         </button>
 
@@ -72,20 +74,81 @@
 
       <nav
         id="site-primary-nav"
-        class="site-nav"
+        class="site-nav site-nav--desktop"
         aria-label="Navigazione principale"
       >
         <ul class="site-nav__list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Chi siamo</a></li>
-          <li>
-            <a href="#">Aree tematiche <span aria-hidden="true">▾</span></a>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="#">Home</a>
           </li>
-          <li><a href="#">Io sono <span aria-hidden="true">▾</span></a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Dati ambientali</a></li>
-          <li><a href="#">Dati aperti <span aria-hidden="true">▾</span></a></li>
-          <li><a href="#">Mappa portale</a></li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="#">Chi siamo</a>
+          </li>
+          <li class="site-nav__item site-nav__item--has-sub">
+            <button
+              type="button"
+              class="site-nav__link site-nav__link--trigger"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="sub-aree"
+              id="sub-aree-btn"
+            >
+              Aree tematiche <span class="site-nav__chev" aria-hidden="true">▾</span>
+            </button>
+            <ul id="sub-aree" class="site-nav__sub" role="menu">
+              <li role="none"><a role="menuitem" href="#">Acque</a></li>
+              <li role="none"><a role="menuitem" href="#">Agenti fisici</a></li>
+              <li role="none"><a role="menuitem" href="#">Aria</a></li>
+              <li role="none">
+                <a role="menuitem" href="#">Conservazione natura</a>
+              </li>
+              <li role="none"><a role="menuitem" href="#">Energia</a></li>
+              <li role="none"><a role="menuitem" href="#">Rifiuti</a></li>
+              <li role="none"><a role="menuitem" href="#">Territorio</a></li>
+            </ul>
+          </li>
+          <li class="site-nav__item site-nav__item--has-sub">
+            <button
+              type="button"
+              class="site-nav__link site-nav__link--trigger"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="sub-io-sono"
+              id="sub-io-sono-btn"
+            >
+              Io sono <span class="site-nav__chev" aria-hidden="true">▾</span>
+            </button>
+            <ul id="sub-io-sono" class="site-nav__sub" role="menu">
+              <li role="none"><a role="menuitem" href="#">Cittadino</a></li>
+              <li role="none"><a role="menuitem" href="#">Impresa</a></li>
+              <li role="none"><a role="menuitem" href="#">Ente pubblico</a></li>
+            </ul>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="#">News</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="#">Dati ambientali</a>
+          </li>
+          <li class="site-nav__item site-nav__item--has-sub">
+            <button
+              type="button"
+              class="site-nav__link site-nav__link--trigger"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="sub-dati-aperti"
+              id="sub-dati-aperti-btn"
+            >
+              Dati aperti <span class="site-nav__chev" aria-hidden="true">▾</span>
+            </button>
+            <ul id="sub-dati-aperti" class="site-nav__sub" role="menu">
+              <li role="none"><a role="menuitem" href="#">Normativa</a></li>
+              <li role="none"><a role="menuitem" href="#">Dataset</a></li>
+            </ul>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="#">Mappa portale</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -207,6 +270,98 @@
         </div>
       </div>
     </footer>
+
+    <div
+      id="site-drawer"
+      class="site-drawer"
+      aria-hidden="true"
+      inert
+    >
+      <button
+        type="button"
+        class="site-drawer__backdrop"
+        aria-label="Chiudi menu"
+        data-drawer-dismiss
+      ></button>
+      <div
+        class="site-drawer__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="site-drawer-title"
+      >
+        <div class="site-drawer__head">
+          <p id="site-drawer-title" class="site-drawer__title">Menu</p>
+          <button
+            type="button"
+            class="site-drawer__close"
+            aria-label="Chiudi menu"
+            data-drawer-dismiss
+          >
+            ×
+          </button>
+        </div>
+        <nav class="site-drawer__nav" aria-label="Menu principale">
+          <ul class="site-drawer__list">
+            <li><a class="site-drawer__link" href="#">Home</a></li>
+            <li><a class="site-drawer__link" href="#">Chi siamo</a></li>
+            <li class="site-drawer__item--sub">
+              <button
+                type="button"
+                class="site-drawer__link site-drawer__link--toggle"
+                aria-expanded="false"
+                aria-controls="drawer-sub-aree"
+              >
+                Aree tematiche
+                <span class="site-drawer__chev" aria-hidden="true">▾</span>
+              </button>
+              <ul id="drawer-sub-aree" class="site-drawer__sub" hidden>
+                <li><a href="#">Acque</a></li>
+                <li><a href="#">Agenti fisici</a></li>
+                <li><a href="#">Aria</a></li>
+                <li><a href="#">Conservazione natura</a></li>
+                <li><a href="#">Energia</a></li>
+                <li><a href="#">Rifiuti</a></li>
+                <li><a href="#">Territorio</a></li>
+              </ul>
+            </li>
+            <li class="site-drawer__item--sub">
+              <button
+                type="button"
+                class="site-drawer__link site-drawer__link--toggle"
+                aria-expanded="false"
+                aria-controls="drawer-sub-io"
+              >
+                Io sono
+                <span class="site-drawer__chev" aria-hidden="true">▾</span>
+              </button>
+              <ul id="drawer-sub-io" class="site-drawer__sub" hidden>
+                <li><a href="#">Cittadino</a></li>
+                <li><a href="#">Impresa</a></li>
+                <li><a href="#">Ente pubblico</a></li>
+              </ul>
+            </li>
+            <li><a class="site-drawer__link" href="#">News</a></li>
+            <li><a class="site-drawer__link" href="#">Dati ambientali</a></li>
+            <li class="site-drawer__item--sub">
+              <button
+                type="button"
+                class="site-drawer__link site-drawer__link--toggle"
+                aria-expanded="false"
+                aria-controls="drawer-sub-aperti"
+              >
+                Dati aperti
+                <span class="site-drawer__chev" aria-hidden="true">▾</span>
+              </button>
+              <ul id="drawer-sub-aperti" class="site-drawer__sub" hidden>
+                <li><a href="#">Normativa</a></li>
+                <li><a href="#">Dataset</a></li>
+              </ul>
+            </li>
+            <li><a class="site-drawer__link" href="#">Mappa portale</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
 
     <div
       id="cookie-banner"
