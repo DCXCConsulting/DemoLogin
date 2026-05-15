@@ -6,8 +6,11 @@
   --color-muted: #666666;
   --color-border: #e0e0e0;
   --color-util-bg: #333b42;
-  --color-header-ribbon: #f2f7fa;
+  --color-header-ribbon-open: #99d6ea;
+  --color-header-ribbon-collapsed: #ffffff;
   --color-nav-bg: #2b99c9;
+  --color-nav-bg-hover: #2588b5;
+  --color-section-accent: #46acc2;
   --color-nav-bg-hover: #2588b5;
   --color-util-cta: #29aae1;
   --color-util-cta-hover: #2196d3;
@@ -63,7 +66,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* --- Site header: whole block sticks under .demo-banner; compacts on scroll --- */
+/* --- Site header: sticky; ribbon “open” = azzurro + menu bianco; “chiuso” = bianco + compatto --- */
 .site-header {
   position: sticky;
   top: var(--sticky-top-offset);
@@ -71,7 +74,7 @@ body {
   flex-shrink: 0;
   align-self: flex-start;
   width: 100%;
-  background: var(--color-header-ribbon);
+  background: transparent;
   transition: box-shadow var(--ease-header);
 }
 
@@ -171,14 +174,31 @@ body {
   align-items: center;
   gap: 0.75rem 1.5rem;
   padding: 0.75rem 1.25rem 0.85rem;
-  background: var(--color-header-ribbon);
+  background: var(--color-header-ribbon-open);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  transition: padding var(--ease-header);
+  transition: padding var(--ease-header), background-color var(--ease-header);
 }
 
 .site-header--scrolled .site-header__ribbon {
-  padding-top: 0.4rem;
-  padding-bottom: 0.45rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem 1.25rem;
+  background: var(--color-header-ribbon-collapsed);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 0.35rem;
+  padding-bottom: 0.4rem;
+}
+
+.site-header:not(.site-header--scrolled) .site-header__menu,
+.site-header:not(.site-header--scrolled) .site-header__menu-label {
+  color: #fff;
+}
+
+.site-header--scrolled .site-header__menu,
+.site-header--scrolled .site-header__menu-label {
+  color: #1a1a1a;
 }
 
 .site-header__menu {
@@ -191,11 +211,19 @@ body {
   margin: 0;
   border: none;
   background: transparent;
-  color: #1a1a1a;
   font: inherit;
   cursor: pointer;
   flex-shrink: 0;
   grid-column: 1;
+  transition: color var(--ease-header);
+}
+
+.site-header__menu-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: color var(--ease-header);
 }
 
 .site-header__menu:focus-visible {
@@ -212,14 +240,6 @@ body {
   box-shadow: 0 6px 0 currentColor, 0 12px 0 currentColor;
 }
 
-.site-header__menu-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #1a1a1a;
-}
-
 /* --- siralogo (replaces legacy portal logo naming) --- */
 .siralogo {
   display: flex;
@@ -232,7 +252,23 @@ body {
   grid-column: 2;
   justify-self: center;
   text-align: center;
-  transition: transform var(--ease-header);
+  transition: transform var(--ease-header), flex-direction var(--ease-header),
+    flex-grow var(--ease-header);
+}
+
+.site-header--scrolled .siralogo {
+  grid-column: unset;
+  flex: 1 1 10rem;
+  min-width: 0;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  transform: none;
+  gap: 0;
+}
+
+.site-header--scrolled .siralogo__title {
+  font-size: 1.125rem;
 }
 
 .siralogo__title {
@@ -249,14 +285,6 @@ body {
 .siralogo__sardegna {
   font-weight: 700;
   color: #000;
-}
-
-.site-header--scrolled .siralogo {
-  transform: scale(0.94);
-}
-
-.site-header--scrolled .siralogo__title {
-  font-size: 1.2rem;
 }
 
 .siralogo__trirule {
@@ -405,26 +433,30 @@ body {
 .breadcrumb {
   margin: 0 0 1.5rem;
   font-size: 0.8125rem;
-  color: var(--color-muted);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text);
 }
 
 .breadcrumb a {
-  color: var(--color-muted);
+  color: #111;
   text-decoration: none;
 }
 
 .breadcrumb a:hover {
   text-decoration: underline;
-  color: var(--color-text);
+  color: #000;
 }
 
 .breadcrumb__sep {
   margin: 0 0.35rem;
-  color: #999;
+  color: #9a9a9a;
 }
 
 .breadcrumb__current {
-  color: var(--color-text);
+  color: #111;
+  font-weight: 500;
 }
 
 .info-grid {
@@ -455,7 +487,7 @@ body {
   left: 0;
   width: 2.5rem;
   height: 3px;
-  background: var(--color-nav-bg);
+  background: var(--color-section-accent);
   border-radius: 1px;
 }
 
@@ -708,7 +740,7 @@ body {
 .cookie-banner__more {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-header-ribbon);
+  color: #99d6ea;
   text-decoration: underline;
 }
 
@@ -786,6 +818,7 @@ body {
     align-items: flex-start;
     text-align: left;
   }
+}
 
 body:has(.cookie-banner:not([hidden])) {
   padding-bottom: 8rem;
