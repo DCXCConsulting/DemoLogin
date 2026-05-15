@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="site-header__util-end">
-          <a class="site-header__util-cta" href="#">ACCEDI AI SERVIZI</a>
+          <a class="site-header__util-cta" href="#">Accedi ai servizi</a>
         </div>
       </div>
 
@@ -256,21 +256,46 @@
     </main>
 
     <footer class="site-footer">
-      <h2 class="site-footer__heading">Contatti</h2>
-      <div class="site-footer__divider" aria-hidden="true"></div>
-      <div class="site-footer__grid">
-        <div class="site-footer__col">
-          <p class="site-footer__org">Assessorato della difesa dell’ambiente</p>
-          <p class="site-footer__lines">
-            Via Roma, 80<br />
-            09123 Cagliari
-          </p>
+      <div class="site-footer__inner">
+        <h2 class="site-footer__heading">Contatti</h2>
+        <div class="site-footer__divider" aria-hidden="true"></div>
+        <div class="site-footer__grid">
+          <div class="site-footer__col">
+            <p class="site-footer__org">Assessorato della difesa dell’ambiente</p>
+            <p class="site-footer__lines">
+              Via Roma, 80<br />
+              09123 Cagliari
+            </p>
+          </div>
+          <div class="site-footer__col">
+            <p class="site-footer__label">Recapiti telefonici</p>
+            <p class="site-footer__lines">(+39) 070 606000</p>
+          </div>
         </div>
-        <div class="site-footer__col">
-          <p class="site-footer__label">Recapiti telefonici</p>
-          <p class="site-footer__lines">(+39) 070 606000</p>
+
+        <div class="site-footer__logos">
+          <img src="assets/logo-ue.png" alt="Unione Europea" />
+          <img src="assets/logo-repubblica.png" alt="Repubblica Italiana" />
+          <img src="assets/regione_autonoma.svg" alt="Regione Autonoma della Sardegna" />
+          <img src="assets/logo-por.png" alt="POR FESR Sardegna" />
+          <img src="assets/logo-fs.png" alt="Fondo Sviluppo e Coesione" />
+        </div>
+
+        <div class="site-footer__bottom">
+          <ul class="site-footer__links">
+            <li><a href="#">Note legali</a></li>
+            <li><a href="#">Privacy e Cookie</a></li>
+            <li><a href="#">Help-desk</a></li>
+            <li><a href="#">Contattaci</a></li>
+          </ul>
         </div>
       </div>
+      
+      <button type="button" class="site-footer__back-to-top" aria-label="Torna su" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
     </footer>
 
     <div

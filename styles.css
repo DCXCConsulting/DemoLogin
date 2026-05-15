@@ -25,12 +25,12 @@
   --color-demo-bar: #243038;
   --radius: 2px;
   --focus-ring: 0 0 0 3px rgba(43, 153, 201, 0.45);
-  --layout-max: 1120px;
+  --layout-max: 1440px;
   --header-util-height: 48px;
   --sticky-top-offset: 0px;
   --ease-header: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Roboto loaded via Google Fonts in HTML; swap to local @font-face in assets/ if offline */
-  --font-sans: Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Titillium Web loaded via Google Fonts in HTML */
+  --font-sans: "Titillium Web", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 *,
@@ -134,8 +134,8 @@ body {
 
 .site-header__region-name {
   color: inherit;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0.01em;
   min-width: 0;
@@ -156,10 +156,9 @@ body {
   justify-content: center;
   min-height: 100%; /* [TASK-BUTTON-RESTYLE] Fill the entire height of the utility bar */
   padding: 0.5rem 1.35rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-decoration: none;
   color: #fff;
   background: var(--color-util-cta);
@@ -285,7 +284,7 @@ body {
 }
 
 .siralogo__title {
-  font-size: 1.45rem;
+  font-size: 2.2rem;
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
@@ -303,9 +302,9 @@ body {
 .siralogo__trirule {
   display: flex;
   gap: 3px;
-  width: 3.25rem;
-  height: 3px;
-  margin: 0.35rem 0 0.35rem;
+  width: 4rem;
+  height: 4px;
+  margin: 0.45rem 0 0.45rem;
   max-height: 12px;
   transition: opacity var(--ease-header);
 }
@@ -330,7 +329,7 @@ body {
 }
 
 .siralogo__subtitle {
-  font-size: 0.6875rem;
+  font-size: 0.85rem;
   font-weight: 400;
   color: #000;
   max-width: 22rem;
@@ -414,8 +413,8 @@ body {
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  padding: 0.55rem clamp(0.3rem, 0.9vw, 0.65rem);
-  font-size: clamp(0.62rem, 0.45vw + 0.52rem, 0.75rem);
+  padding: 0.85rem clamp(0.75rem, 1.5vw, 1.25rem);
+  font-size: clamp(0.75rem, 0.5vw + 0.6rem, 0.85rem);
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -427,7 +426,6 @@ body {
   border: none;
   background: transparent;
   font-family: var(--font-sans);
-  font-weight: 700;
   cursor: pointer;
   height: 100%;
 }
@@ -768,16 +766,16 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
   position: absolute;
   top: 0;
   left: 0;
-  width: 2.5rem;
-  height: 3px;
+  width: 5rem;
+  height: 2px;
   background: var(--color-section-accent);
   border-radius: 1px;
 }
 
 .info-block__title {
   margin: 0 0 0.75rem;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 400;
   color: #111;
 }
 
@@ -785,7 +783,7 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
   margin: 0 0 0.65rem;
   font-size: 0.9375rem;
   color: var(--color-text);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .info-block__text:last-child {
@@ -813,25 +811,27 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
 
 /* --- Footer --- */
 .site-footer {
+  position: relative;
   flex-shrink: 0;
   background: var(--color-footer-bg);
   color: #fff;
-  padding: 1.5rem clamp(0.75rem, 3vw, 1.25rem) 2rem;
+  padding: 2.5rem clamp(0.75rem, 3vw, 1.25rem) 2rem;
+}
+
+.site-footer__inner {
+  max-width: var(--layout-max);
+  margin: 0 auto;
 }
 
 .site-footer__heading {
   margin: 0 0 0.65rem;
-  max-width: var(--layout-max);
-  margin-left: auto;
-  margin-right: auto;
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
 }
 
 .site-footer__divider {
-  max-width: var(--layout-max);
-  margin: 0 auto 1.25rem;
+  margin: 0 0 1.25rem;
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
 }
@@ -840,8 +840,6 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 1.5rem 2rem;
-  max-width: var(--layout-max);
-  margin: 0 auto;
 }
 
 .site-footer__col {
@@ -865,6 +863,71 @@ body[data-transaction-complete="true"] #site-primary-nav.site-nav {
   font-size: 0.9375rem;
   color: #fff;
   line-height: 1.5;
+}
+
+.site-footer__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.site-footer__logos img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.site-footer__bottom {
+  margin-top: 2rem;
+}
+
+.site-footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.site-footer__links a {
+  color: #5dacd8;
+  text-decoration: underline;
+  font-size: 0.85rem;
+}
+
+.site-footer__links a:hover {
+  text-decoration: none;
+  color: #a0d8ef;
+}
+
+.site-footer__back-to-top {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s, background 0.2s;
+  z-index: 50;
+}
+
+.site-footer__back-to-top:hover {
+  background: #b71c1c;
+  transform: translateY(-3px);
 }
 
 /* --- Dashboard page --- */
