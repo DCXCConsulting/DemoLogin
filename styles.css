@@ -25,6 +25,8 @@
   --header-util-height: 48px;
   --sticky-top-offset: 0px;
   --ease-header: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Roboto loaded via Google Fonts in HTML; swap to local @font-face in assets/ if offline */
+  --font-sans: Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 *,
@@ -42,7 +44,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: Arial, Helvetica, system-ui, sans-serif;
+  font-family: var(--font-sans);
   background: var(--color-page-bg);
   color: var(--color-text);
   line-height: 1.5;
