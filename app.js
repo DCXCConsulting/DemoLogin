@@ -212,6 +212,10 @@
     function setOpen(open) {
       drawer.classList.toggle("is-open", open);
       toggle.classList.toggle("is-open", open);
+      var header = document.querySelector(".site-header");
+      if (header) {
+        header.classList.toggle("is-menu-open", open);
+      }
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       drawer.setAttribute("aria-hidden", open ? "false" : "true");
       document.body.classList.toggle("is-drawer-open", open);
