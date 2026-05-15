@@ -36,50 +36,59 @@
         </div>
       </div>
 
-      <div class="site-header__ribbon">
-        <button
-          type="button"
-          class="site-header__menu"
-          aria-expanded="false"
-          aria-controls="site-primary-nav"
+      <div class="site-header__sticky">
+        <div class="site-header__ribbon">
+          <button
+            type="button"
+            class="site-header__menu"
+            aria-expanded="false"
+            aria-controls="site-primary-nav"
+          >
+            <span class="site-header__menu-bars" aria-hidden="true"></span>
+            <span class="site-header__menu-label">Menu</span>
+          </button>
+
+          <a class="siralogo" href="index.html">
+            <span class="siralogo__title"
+              ><span class="siralogo__sira">SIRA</span
+              ><span class="siralogo__sardegna">Sardegna</span></span
+            >
+            <span class="siralogo__trirule" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span class="siralogo__subtitle"
+              >Sistema Informativo Regionale Ambientale</span
+            >
+          </a>
+
+          <p class="site-header__notice">
+            Si comunica all’utenza che il Portale SIRA potrà non essere
+            disponibile per aggiornamenti nel seguente periodo:<br />
+            Ogni venerdì, dalle 14.00 alle 16.00<br />
+            In questo caso, verrà esposta apposita pagina di cortesia che
+            informerà dell’indisponibilità del sistema.
+          </p>
+        </div>
+
+        <nav
+          id="site-primary-nav"
+          class="site-nav"
+          aria-label="Navigazione principale"
         >
-          <span class="site-header__menu-bars" aria-hidden="true"></span>
-          <span class="site-header__menu-label">Menu</span>
-        </button>
-
-        <a class="siralogo" href="index.html">
-          <span class="siralogo__title"
-            ><span class="siralogo__sira">SIRA</span
-            ><span class="siralogo__sardegna">Sardegna</span></span
-          >
-          <span class="siralogo__subtitle"
-            >Sistema informativo regionale ambientale</span
-          >
-        </a>
-
-        <p class="site-header__notice">
-          Avviso dimostrativo: il sistema potrebbe non essere disponibile in
-          finestre di manutenzione programmate (es. giorni feriali 14:00–16:00).
-          Testo di esempio senza valore operativo.
-        </p>
+          <ul class="site-nav__list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Chi siamo</a></li>
+            <li>
+              <a href="#">Aree tematiche <span aria-hidden="true">▾</span></a>
+            </li>
+            <li><a href="#">Io sono <span aria-hidden="true">▾</span></a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Dati ambientali</a></li>
+            <li><a href="#">Dati aperti <span aria-hidden="true">▾</span></a></li>
+            <li><a href="#">Mappa portale</a></li>
+          </ul>
+        </nav>
       </div>
-
-      <nav
-        id="site-primary-nav"
-        class="site-nav"
-        aria-label="Navigazione principale"
-      >
-        <ul class="site-nav__list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Chi siamo</a></li>
-          <li><a href="#">Aree tematiche <span aria-hidden="true">▾</span></a></li>
-          <li><a href="#">Io sono <span aria-hidden="true">▾</span></a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Dati ambientali</a></li>
-          <li><a href="#">Dati aperti <span aria-hidden="true">▾</span></a></li>
-          <li><a href="#">Mappa portale</a></li>
-        </ul>
-      </nav>
     </header>
 
     <main class="site-main" id="main-content">

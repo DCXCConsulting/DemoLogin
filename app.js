@@ -64,7 +64,65 @@
     });
   }
 
+  /**
+   * Sticky header: ribbon + nav stick below .demo-banner; util bar scrolls away.
+   * Toggles .site-header--stuck for compact ribbon + shadow when util is out of view.
+   */
+  function initStickySiteHeader() {
+    var sticky = document.querySelector(".site-header__sticky");
+    var header = document.querySelector(".site-header");
+    var util = document.querySelector(".site-header__util");
+    var notice = document.querySelector(".site-header__notice");
+    var demoBanner = document.querySelector(".demo-banner");
+    if (!sticky || !header || !util) {
+      return;
+    }
+
+    function setTopOffset() {
+      var h = demoBanner ? demoBanner.offsetHeight : 0;
+      document.documentElement.style.setProperty("--sticky-top-offset", h + "px");
+    }
+
+    function updateStuckState() {
+      var utilBox = util.getBoundingClientRect();
+      var threshold = demoBanner
+        ? demoBanner.getBoundingClientRect().bottom
+        : 0;
+      var stuck = utilBox.bottom <= threshold + 0.5;
+      header.classList.toggle("site-header--stuck", stuck);
+      if (notice) {
+        if (stuck) {
+          notice.setAttribute("aria-hidden", "true");
+        } else {
+          notice.removeAttribute("aria-hidden");
+        }
+      }
+    }
+
+    var ticking = false;
+    function onFrame() {
+      ticking = false;
+      updateStuckState();
+    }
+
+    function requestUpdate() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(onFrame);
+      }
+    }
+
+    setTopOffset();
+    updateStuckState();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", function () {
+      setTopOffset();
+      requestUpdate();
+    });
+  }
+
   initCookieBanner();
+  initStickySiteHeader();
 
   if (document.body.dataset.page === "home") {
     initTabSections();
