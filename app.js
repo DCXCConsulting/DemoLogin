@@ -4,6 +4,7 @@
   "use strict";
 
   var COOKIE_CONSENT_KEY = "susDemoCookieConsent";
+  var SCROLL_COMPACT_PX = 36;
 
   /**
    * Cookie banner: hide after accept, persist preference.
@@ -65,16 +66,15 @@
   }
 
   /**
-   * Sticky header: ribbon + nav stick below .demo-banner; util bar scrolls away.
-   * Toggles .site-header--stuck for compact ribbon + shadow when util is out of view.
+   * Sticky site header: entire <header> uses position:sticky under .demo-banner.
+   * Adds .site-header--scrolled after scroll to collapse util row, notice, and tighten nav.
    */
   function initStickySiteHeader() {
-    var sticky = document.querySelector(".site-header__sticky");
     var header = document.querySelector(".site-header");
-    var util = document.querySelector(".site-header__util");
-    var notice = document.querySelector(".site-header__notice");
     var demoBanner = document.querySelector(".demo-banner");
-    if (!sticky || !header || !util) {
+    var notice = document.querySelector(".site-header__notice");
+    var util = document.querySelector(".site-header__util");
+    if (!header) {
       return;
     }
 
@@ -83,37 +83,43 @@
       document.documentElement.style.setProperty("--sticky-top-offset", h + "px");
     }
 
-    function updateStuckState() {
-      var utilBox = util.getBoundingClientRect();
-      var threshold = demoBanner
-        ? demoBanner.getBoundingClientRect().bottom
-        : 0;
-      var stuck = utilBox.bottom <= threshold + 0.5;
-      header.classList.toggle("site-header--stuck", stuck);
+    function setCompactAria(compact) {
       if (notice) {
-        if (stuck) {
+        if (compact) {
           notice.setAttribute("aria-hidden", "true");
         } else {
           notice.removeAttribute("aria-hidden");
         }
       }
+      if (util) {
+        if (compact) {
+          util.setAttribute("aria-hidden", "true");
+        } else {
+          util.removeAttribute("aria-hidden");
+        }
+      }
+    }
+
+    function updateFromScroll() {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var compact = y > SCROLL_COMPACT_PX;
+      header.classList.toggle("site-header--scrolled", compact);
+      setCompactAria(compact);
     }
 
     var ticking = false;
-    function onFrame() {
-      ticking = false;
-      updateStuckState();
-    }
-
     function requestUpdate() {
       if (!ticking) {
         ticking = true;
-        requestAnimationFrame(onFrame);
+        requestAnimationFrame(function () {
+          ticking = false;
+          updateFromScroll();
+        });
       }
     }
 
     setTopOffset();
-    updateStuckState();
+    updateFromScroll();
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", function () {
       setTopOffset();
