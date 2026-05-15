@@ -209,7 +209,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.35rem;
   padding: 0.35rem 0.5rem;
   margin: 0;
   border: none;
@@ -235,12 +235,17 @@ body {
   border-radius: var(--radius);
 }
 
+/* Icon height must match painted bars: box-shadow does not affect flex layout. */
 .site-header__menu-bars {
   width: 22px;
-  height: 2px;
-  background: currentColor;
+  height: 14px;
+  flex-shrink: 0;
   border-radius: 1px;
-  box-shadow: 0 6px 0 currentColor, 0 12px 0 currentColor;
+  background: linear-gradient(currentColor, currentColor) 0 0 / 100% 2px
+      no-repeat,
+    linear-gradient(currentColor, currentColor) 0 6px / 100% 2px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 12px / 100% 2px no-repeat;
+  box-shadow: none;
 }
 
 /* --- siralogo (replaces legacy portal logo naming) --- */
@@ -255,8 +260,8 @@ body {
   grid-column: 2;
   justify-self: start;
   text-align: left;
-  transition: transform var(--ease-header), flex-direction var(--ease-header),
-    flex-grow var(--ease-header);
+  /* Only transform is compositor-friendly; avoid transitioning flex-* (layout thrash). */
+  transition: transform var(--ease-header);
 }
 
 .site-header--scrolled .siralogo {
@@ -376,8 +381,14 @@ body {
   padding: 0 0.35rem;
   list-style: none;
   overflow-x: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.site-nav__list::-webkit-scrollbar {
+  display: none;
 }
 
 .site-nav__list > li {
@@ -401,8 +412,8 @@ body {
   text-decoration: none;
   color: #fff;
   white-space: nowrap;
-  transition: background 0.12s ease, padding var(--ease-header),
-    font-size var(--ease-header);
+  /* Font size steps with layout; animating it causes jank during header compact toggle. */
+  transition: background 0.12s ease, padding var(--ease-header);
   border: none;
   background: transparent;
   font-family: var(--font-sans);
@@ -481,6 +492,11 @@ body {
   font-size: clamp(0.58rem, 0.4vw + 0.48rem, 0.7rem);
 }
 
+/* Post-transaction: primary bar removed from layout (see initPostTransactionPrimaryNav in app.js). */
+body[data-transaction-complete="true"] #site-primary-nav.site-nav {
+  display: none;
+}
+
 /* --- Menu toggle: default 3 barre; .site-header__menu--bars-2 = due linee (foto 1); .is-open = drawer (foto 8) --- */
 .site-header__menu-x {
   display: none;
@@ -551,10 +567,17 @@ body {
   background: #fff;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
   transform: translateX(-100%);
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
   display: flex;
   flex-direction: column;
   overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.site-drawer__panel::-webkit-scrollbar {
+  display: none;
 }
 
 .site-drawer.is-open .site-drawer__panel {
@@ -1003,12 +1026,16 @@ body {
 @media (max-width: 1140px) {
   .site-header__menu {
     padding: 0.28rem 0.42rem;
-    gap: 0.18rem;
+    gap: 0.28rem;
   }
 
   .site-header__menu-bars {
     width: 19px;
-    box-shadow: 0 5px 0 currentColor, 0 10px 0 currentColor;
+    height: 12px;
+    background: linear-gradient(currentColor, currentColor) 0 0 / 100% 2px
+        no-repeat,
+      linear-gradient(currentColor, currentColor) 0 5px / 100% 2px no-repeat,
+      linear-gradient(currentColor, currentColor) 0 10px / 100% 2px no-repeat;
   }
 
   .site-header__menu-label {
@@ -1028,7 +1055,11 @@ body {
 @media (max-width: 1024px) {
   .site-header__menu-bars {
     width: 17px;
-    box-shadow: 0 5px 0 currentColor, 0 10px 0 currentColor;
+    height: 12px;
+    background: linear-gradient(currentColor, currentColor) 0 0 / 100% 2px
+        no-repeat,
+      linear-gradient(currentColor, currentColor) 0 5px / 100% 2px no-repeat,
+      linear-gradient(currentColor, currentColor) 0 10px / 100% 2px no-repeat;
   }
 
   .site-header__menu-label {
@@ -1143,6 +1174,7 @@ body:has(.cookie-banner:not([hidden])) {
   .site-drawer__panel,
   .site-drawer__backdrop {
     transition: none;
+    will-change: auto;
   }
 
   .site-header--scrolled .siralogo {

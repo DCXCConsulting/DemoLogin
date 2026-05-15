@@ -4,7 +4,13 @@
   "use strict";
 
   var COOKIE_CONSENT_KEY = "susDemoCookieConsent";
-  var SCROLL_COMPACT_PX = 36;
+  /** Enter compact header after this scroll offset (px). */
+  var SCROLL_COMPACT_ENTER_PX = 40;
+  /**
+   * Leave compact only when near top (px). Hysteresis avoids oscillation when
+   * collapsing the util row changes layout and scroll position hovers the threshold.
+   */
+  var SCROLL_COMPACT_EXIT_PX = 6;
 
   /**
    * Cookie banner: hide after accept, persist preference.
@@ -68,6 +74,8 @@
   /**
    * Sticky site header: entire <header> uses position:sticky under .demo-banner.
    * Adds .site-header--scrolled after scroll to collapse util row, notice, and tighten nav.
+   * Uses scroll hysteresis so layout changes from collapsing the util bar do not flip the
+   * compact state rapidly (perceived as a choppy transition).
    */
   function initStickySiteHeader() {
     var header = document.querySelector(".site-header");
@@ -102,7 +110,9 @@
 
     function updateFromScroll() {
       var y = window.scrollY || document.documentElement.scrollTop;
-      var compact = y > SCROLL_COMPACT_PX;
+      var wasCompact = header.classList.contains("site-header--scrolled");
+      var compact =
+        wasCompact ? y > SCROLL_COMPACT_EXIT_PX : y > SCROLL_COMPACT_ENTER_PX;
       header.classList.toggle("site-header--scrolled", compact);
       setCompactAria(compact);
     }
@@ -125,6 +135,43 @@
       setTopOffset();
       requestUpdate();
     });
+  }
+
+  /**
+   * After a completed transaction, hide the desktop primary bar (HOME, …) so
+   * only the ribbon / util header remains. Trigger via:
+   * - <body data-transaction-complete="true">
+   * - URL ?txComplete=1 or ?tx=complete
+   * - window.siraDemo.setPrimaryNavHidden(true) from app code
+   * Trace: DEMO-SIRA-RESTYLE — post-transaction header (replace with activity id if provided).
+   */
+  function initPostTransactionPrimaryNav() {
+    var nav = document.getElementById("site-primary-nav");
+    if (!nav) {
+      return;
+    }
+
+    function applyHidden(hidden) {
+      nav.hidden = !!hidden;
+      if (hidden) {
+        document.body.dataset.transactionComplete = "true";
+      } else {
+        delete document.body.dataset.transactionComplete;
+      }
+    }
+
+    var params = new URLSearchParams(window.location.search);
+    var fromUrl =
+      params.get("txComplete") === "1" || params.get("tx") === "complete";
+    var fromBody = document.body.dataset.transactionComplete === "true";
+    if (fromUrl || fromBody) {
+      applyHidden(true);
+    }
+
+    window.siraDemo = window.siraDemo || {};
+    window.siraDemo.setPrimaryNavHidden = function (hidden) {
+      applyHidden(!!hidden);
+    };
   }
 
   /**
@@ -213,6 +260,7 @@
 
   initCookieBanner();
   initStickySiteHeader();
+  initPostTransactionPrimaryNav();
   initSiteDrawer();
 
   if (document.body.dataset.page === "home") {
